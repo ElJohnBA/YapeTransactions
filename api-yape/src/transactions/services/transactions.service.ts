@@ -9,7 +9,7 @@ export class TransactionsService {
 
   constructor(@Inject('KAFKA_PRODUCER') private kafkaProducer: Producer) {}
 
-  create(createServiceDto: CreateTransactionDto) {
+  createTransaction(createServiceDto: CreateTransactionDto) {
     const key = Math.floor(Math.random() * 100);
     this.sendKafkaEvent(this.generateKey(), {
       eventType: 'TransactionCreated',

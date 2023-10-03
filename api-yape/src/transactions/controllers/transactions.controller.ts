@@ -8,8 +8,8 @@ export class TransactionsController {
   constructor(private readonly transactionsService: TransactionsService) {}
 
   @Post('/transactions')
-  create(@Body() createServiceDto: CreateTransactionDto) {
-    return this.transactionsService.create(createServiceDto);
+  createTransaction(@Body() createServiceDto: CreateTransactionDto) {
+    return this.transactionsService.createTransaction(createServiceDto);
   }
  
   @Get()
