@@ -56,7 +56,7 @@ services:
     command: >
       bash -c
         "sleep 5s &&
-        kafka-topics --create --topic=services --if-not-exists --bootstrap-server=kafka:9092"
+        kafka-topics --create --topic=transactionsyape --if-not-exists --bootstrap-server=kafka:9092"
 
   #confluent UI, open at http://localhost:9021/clusters    
   control-center:
