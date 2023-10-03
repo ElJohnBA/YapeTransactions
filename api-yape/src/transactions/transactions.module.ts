@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ClientKafka, ClientsModule, Transport } from '@nestjs/microservices';
-import { TransactionsController } from './transactions.controller';
-import { TransactionsService } from './transactions.service';
+import { TransactionsController } from './controllers/transactions.controller';
+import { TransactionsService } from './services/transactions.service';
 
 @Module({
   imports: [
@@ -11,11 +11,11 @@ import { TransactionsService } from './transactions.service';
         transport: Transport.KAFKA,
         options: {
           client: {
-            clientId: 'transactions-yape',
+            clientId: 'transactionsyape',
             brokers: ['host.docker.internal:9094'],
           },
           consumer: {
-            groupId: 'transactions-yape',
+            groupId: 'transactionsyape',
           },
         },
       },

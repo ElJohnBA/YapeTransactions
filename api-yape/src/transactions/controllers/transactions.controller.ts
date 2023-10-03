@@ -1,17 +1,17 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { TransactionsService } from './transactions.service';
-import { CreateTransactionDto } from './dto/create-transaction.dto';
-import { UpdateTransactionDto } from './dto/update-transaction.dto';
+import { TransactionsService } from '../services/transactions.service';
+import { CreateTransactionDto } from '../dto/create-transaction.dto';
+import { UpdateTransactionDto } from '../dto/update-transaction.dto';
 
-@Controller('transactions')
+@Controller('api/v1')
 export class TransactionsController {
   constructor(private readonly transactionsService: TransactionsService) {}
 
-  @Post()
+  @Post('/transactions')
   create(@Body() createServiceDto: CreateTransactionDto) {
     return this.transactionsService.create(createServiceDto);
   }
-
+ 
   @Get()
   findAll() {
     return this.transactionsService.findAll();

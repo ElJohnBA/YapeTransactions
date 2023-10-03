@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Producer } from '@nestjs/microservices/external/kafka.interface';
-import { CreateTransactionDto } from './dto/create-transaction.dto';
-import { UpdateTransactionDto } from './dto/update-transaction.dto';
+import { CreateTransactionDto } from '../dto/create-transaction.dto';
+import { UpdateTransactionDto } from '../dto/update-transaction.dto';
 
 
 @Injectable()
@@ -10,10 +10,9 @@ export class TransactionsService {
   constructor(@Inject('KAFKA_PRODUCER') private kafkaProducer: Producer) {}
 
   create(createServiceDto: CreateTransactionDto) {
-    const id = Math.floor(Math.random() * 100);
-    this.sendKafkaEvent(`${id}`, {
-      eventType: 'ServiceUpdated',
-      id,
+    const key = Math.floor(Math.random() * 100);
+    this.sendKafkaEvent(this.generateKey(), {
+      eventType: 'TransactionCreated',
       ...createServiceDto,
     });
     return 'This action adds a new service';
@@ -30,7 +29,7 @@ export class TransactionsService {
   update(id: number, updateServiceDto: UpdateTransactionDto) {
     updateServiceDto.id = id;
     this.sendKafkaEvent(`${id}`, {
-      eventType: 'ServiceUpdated',
+      eventType: 'TransactionUpdated',
       ...updateServiceDto,
     });
     return `This action updates a #${id} service`;
@@ -43,8 +42,12 @@ export class TransactionsService {
 
   sendKafkaEvent(key, value) {
     this.kafkaProducer.send({
-      topic: 'services',
+      topic: 'transactionsyape',
       messages: [{ key, value: JSON.stringify(value) }],
     });
+  }
+
+  generateKey() {
+    return Math.floor(Math.random() * 1000).toString();
   }
 }
