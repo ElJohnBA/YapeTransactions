@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString, IsUUID, MaxLength } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsUUID } from 'class-validator';
 
 export class CreateTransactionDto {
 

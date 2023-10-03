@@ -1,10 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { CreateTransactionDto } from './dto/create-transaction.dto';
-import { UpdateTransactionDto } from './dto/update-transaction.dto';
+import { CreateTransactionDto } from '../dto/create-transaction.dto';
+import { UpdateTransactionDto } from '../dto/update-transaction.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Transaction } from '../entities/transaction.entity';
 
 @Injectable()
 export class TransactionsService {
-  create(createTransactionDto: CreateTransactionDto) {
+
+  constructor(
+    @InjectRepository(Transaction)
+    private readonly transactionRepository:Repository<Transaction>
+){}
+
+  createTransaction(createTransactionDto: CreateTransactionDto) {
     return 'This action adds a new transaction';
   }
 
