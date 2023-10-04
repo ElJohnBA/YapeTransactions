@@ -18,6 +18,21 @@ export class TransactionsService {
     return 'This action adds a new service';
   }
 
+  private sendKafkaEvent(key, value) {
+    this.kafkaProducer.send({
+      topic: 'transactionsyape',
+      messages: [{ key, value: JSON.stringify(value) }],
+    });
+  }
+
+  private generateKey() {
+    return Math.floor(Math.random() * 1000).toString();
+  }
+
+  /*
+   The basis of the following operations is provided for possible future implementations
+  */
+
   findAll() {
     return `This action returns all services`;
   }
@@ -40,14 +55,4 @@ export class TransactionsService {
     return `This action removes a #${id} service`;
   }
 
-  sendKafkaEvent(key, value) {
-    this.kafkaProducer.send({
-      topic: 'transactionsyape',
-      messages: [{ key, value: JSON.stringify(value) }],
-    });
-  }
-
-  generateKey() {
-    return Math.floor(Math.random() * 1000).toString();
-  }
 }

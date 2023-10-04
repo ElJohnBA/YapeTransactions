@@ -20,16 +20,19 @@ export class TransactionsController {
   @OnEvent('TransactionCreated')
   handleCreatedTransaction(createTransactionDto: CreateTransactionDto) {
     Logger.debug(createTransactionDto,
-      'ServicesController - handleServiceCreatedEvent');
-
+      'TransactionsController - handleCreatedTransaction');
     this.transactionsService.createTransaction(createTransactionDto);
   }
+
+  /*
+   The basis of the following operations is provided for possible future implementations
+  */
 
   @OnEvent('TransactionUpdated')
   handleUpdatedEvent(updateTransactionDto: UpdateTransactionDto) {
     Logger.debug(
       updateTransactionDto,
-      'ServicesController - handleServiceUpdatedEvent',
+      'TransactionsController - TransactionUpdated',
     );
   }
 
@@ -37,7 +40,7 @@ export class TransactionsController {
   handleServiceDeletedEvent(deleteServiceDto: any) {
     Logger.debug(
       deleteServiceDto,
-      'ServicesController - handleServiceDeletedEvent',
+      'TransactionsController - TransactionDeleted',
     );
   }
 

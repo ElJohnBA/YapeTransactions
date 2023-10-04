@@ -11,6 +11,10 @@ export class TransactionsController {
   createTransaction(@Body() createServiceDto: CreateTransactionDto) {
     return this.transactionsService.createTransaction(createServiceDto);
   }
+
+  /*
+   The basis of the following operations is provided for possible future implementations
+  */
  
   @Get()
   findAll() {
