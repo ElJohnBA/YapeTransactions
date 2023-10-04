@@ -13,7 +13,7 @@ async function bootstrap() {
             brokers: ['host.docker.internal:9094'],
         },
         consumer: {
-          groupId: `microservices-${Math.floor(Math.random() * 100)}`,
+          groupId: `transactionsyape-${Math.floor(Math.random() * 100)}`,
         },
       },
     },
